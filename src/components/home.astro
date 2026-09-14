@@ -4,6 +4,8 @@ import LogoWall from "./logoWall.astro";
 import SocialLinks from "./socialLinks.astro";
 import SkillsList from "../React/SkillsList.tsx";
 import { PERSON, STATS } from "@/config";
+
+const resume = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/${PERSON.resume.replace(/^\/+/, "")}`;
 ---
 
 <section class="text-[var(--white)] mt-12 md:mt-0" id="home">
@@ -30,7 +32,7 @@ import { PERSON, STATS } from "@/config";
       <div class="flex flex-wrap items-center gap-2 pt-3 md:pt-6">
         <SocialLinks />
         <a
-          href={PERSON.resume}
+          href={resume}
           target="_blank"
           rel="noopener noreferrer"
           class="flex items-center gap-2 h-[56px] px-5 text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"

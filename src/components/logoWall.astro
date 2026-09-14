@@ -2,6 +2,8 @@
 import { TECH_WALL } from "@/config";
 
 const marquee = [...TECH_WALL, ...TECH_WALL];
+const asset = (path: string) =>
+  `${import.meta.env.BASE_URL.replace(/\/$/, "")}/${path.replace(/^\/+/, "")}`;
 ---
 
 <div class="relative overflow-x-hidden py-8">
@@ -22,7 +24,7 @@ const marquee = [...TECH_WALL, ...TECH_WALL];
           aria-hidden={index >= TECH_WALL.length ? "true" : "false"}
         >
           <img
-            src={`/svg/${tech.slug}.svg`}
+            src={asset(`/svg/${tech.slug}.svg`)}
             alt={tech.label}
             class="h-7 w-auto object-contain transition-transform group-hover:scale-110 opacity-60"
             width="30"
