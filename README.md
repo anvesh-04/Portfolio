@@ -1,107 +1,104 @@
-# Dark minimal
-> Highly customizable and performant portfolio template built with Astro, React, and Tailwind CSS.
+# Anvesh Gupta — Portfolio
 
-<img width="1920" height="1080" alt="astro-portfolio" src="https://github.com/user-attachments/assets/0df80067-5fe2-4c24-90c4-4eb28e1a7508" />
+Personal portfolio site built with [Astro](https://astro.build), React islands and Tailwind CSS.
+Static, zero backend services, deploys anywhere that serves files.
 
-![Deploy Status](https://img.shields.io/badge/Deploy-Vercel-black?style=flat&logo=vercel)
+**Live:** https://anvesh-gupta.vercel.app _(placeholder — see "Changing the domain" below)_
 
----
+## Quick start
 
-[Demo](https://darkminimal.vercel.app) | [Astro Themes](https://astro.build/themes/details/darkminimal/) | [ReactBits Showcase](https://www.reactbits.dev/showcase) 
-
-## **Features**
-- **Blazing fast performance** powered by Astro
-- **Beautifully styled** with Tailwind CSS
-- **Spotify integration** for showcasing your favorite album
-- **Working contact form** powered by Formspree
-- **Interactive UI** including the `<LetterGlitch />` component from [ReactBits.dev](https://www.reactbits.dev/)
-
-## **Stack**  
-### **Frontend**  
-![Astro](https://img.shields.io/badge/Astro-FF5D01?logo=astro&logoColor=white)
-![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
-
-### **Tools**  
-![Figma](https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=white)
-![Prettier](https://img.shields.io/badge/Prettier-F7B93E?logo=prettier&logoColor=black)
-![Canva](https://img.shields.io/badge/Canva-c900c3?logo=canva&logoColor=white)
-
-## **Configuration Guides**
-
-### **Show your favorite Spotify album (or your own)** ![Spotify](https://img.shields.io/badge/Spotify-06cc1a?logo=spotify&logoColor=white)
-1. Choose your Spotify album
-2. Access the share options
-3. Select 'copy embed code'
-```html
-<iframe src="https://open.spotify.com/embed/album/YOUR_ALBUM_ID_HERE" style="border-radius:12px border:0;" class="w-full h-40" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-```
-4. Insert the embed code on `src/Components/footer.astro`
-
-### **Set up contact form (Formspree)** ![Formspree](https://img.shields.io/badge/Formspree-E21A28?logo=formspree&logoColor=white)
-1. Create an account on [Formspree](https://formspree.io/)
-2. Create a new project/form and copy your form endpoint URL (it looks like `https://formspree.io/f/your_id`)
-3. Open the `src/Components/contact.astro` file
-4. Replace the `action` attribute in the `<form>` tag with your endpoint URL:
-```html
-<form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
-```
-
-## **Customization Checklist**
-Before deploying your own instance, make sure to update these placeholder values with your real information:
-- **`src/layouts/Layout.astro`**: Update `title`, `description`, `canonical` URL, `og` tags, and the JSON-LD schema with your own details.
-- **`src/components/home.astro`**: Change the greeting "Your Name" and update the GitHub, LinkedIn, and email URLs.
-- **`src/components/projects.astro`**: Replace the generic projects (Project One, etc.) with your own, including titles, descriptions and links.
-- **`src/components/footer.astro`**: Update the social links, change the Spotify iframe to your playlist, and update the copyright name.
-
-## **Customization**
-To make this portfolio your own, you can edit the following files:
-- **Global Settings:** Update metadata and title in `src/layouts/Layout.astro`.
-- **Content:** Modify the text, links, and details inside the components in `src/Components/` (e.g., `home.astro`, `projects.astro`, `contact.astro`).
-- **Styling:** The design uses Tailwind CSS. You can adjust the theme configuration in `tailwind.config.mjs` and custom styles if needed.
-
-## **Project structure**
-```text
-public/
-└── svg/
-src/
-├── Components/
-|    ├── contact.astro
-|    ├── footer.astro
-|    ├── home.astro
-|    ├── logoWall.astro
-|    ├── nav.astro
-|    └── projects.astro
-├── layouts/
-|    └── Layout.astro
-├── React/
-|    ├── LetterGlitch.tsx
-|    ├── LikeButton.tsx
-|    └── SkillsList.tsx
-└── pages/
-     └── index.astro
-```
-
-## **Local configuration** 
-
-### Prerequisites
-- **Node.js** (v18 or higher recommended)
-- **npm** or **pnpm**
-
-1. Clone the repo:  
 ```bash
-git clone https://github.com/Gothsec/dark-minimal
-```
-2. Install dependencies:
-```bash  
 npm install
-```
-3. Start the development server:
-```bash  
-npm run dev
+npm run dev      # http://localhost:4321
+npm run build    # type-check + build to dist/
+npm run preview  # serve dist/ locally
 ```
 
-## **Deployment**
-This project is built with Astro and can be easily deployed to Vercel, Netlify, or GitHub Pages. For the easiest setup, push your repository to GitHub and import it directly into [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/).
- 
-> This project is licensed under the [MIT License](https://opensource.org/licenses/mit). 
+Requires Node.js >= 20.
+
+## Editing your content
+
+**Everything personal lives in [`src/config.ts`](src/config.ts).** You should rarely need to touch
+a component to update the site:
+
+| Export         | Controls                                                            |
+| -------------- | ------------------------------------------------------------------- |
+| `SITE_URL`     | Canonical URL, Open Graph tags, JSON-LD                             |
+| `PERSON`       | Name, role, location, email, phone, résumé path, summary            |
+| `SOCIALS`      | GitHub, LinkedIn, LeetCode, Codeforces, email — used in hero + footer |
+| `STATS`        | The four stat tiles under the hero                                  |
+| `PROJECTS`     | Project cards: blurb, cover image, stack, repo, live demo, highlights |
+| `EXPERIENCE`   | Experience timeline in the About section                            |
+| `EDUCATION`    | Education cards                                                     |
+| `ACHIEVEMENTS` | Achievements list                                                   |
+| `TECH_WALL`    | The scrolling logo marquee (each `slug` needs `public/svg/<slug>.svg`) |
+| `SKILL_GROUPS` | The "Technical skills" grid                                         |
+
+The "What I do?" accordion copy lives in [`src/React/SkillsList.tsx`](src/React/SkillsList.tsx).
+
+### Changing the domain
+
+Set `SITE_URL` in `src/config.ts`, then update the two hard-coded copies in
+`public/robots.txt` and `public/sitemap.xml`.
+
+### Adding a project
+
+1. Add an entry to `PROJECTS` in `src/config.ts`.
+2. Drop a cover image in `public/projects/`. Covers are cropped to a wide strip
+   (`h-52` mobile / `h-72` desktop), so keep artwork edge-to-edge and **don't put text in the
+   image** — the card renders the title below it.
+3. Omit `preview` and the live-demo button is hidden automatically.
+
+### Replacing the résumé
+
+Replace `public/Anvesh_Gupta_Resume.pdf` and update `PERSON.resume` if you rename it.
+
+## Structure
+
+```
+src/
+├── config.ts               # all personal data
+├── pages/index.astro       # single page: Nav → Home → About → Projects → Contact → Footer
+├── layouts/Layout.astro    # <head>, meta/OG/JSON-LD, global CSS + theme tokens
+├── components/
+│   ├── nav.astro           # floating nav; bottom bar on mobile, scroll-shrink on desktop
+│   ├── home.astro          # hero, stat tiles, logo wall, skills accordion
+│   ├── experience.astro    # About: summary, experience timeline, skills, achievements, education
+│   ├── projects.astro      # project cards
+│   ├── contact.astro       # email + copy-to-clipboard, LinkedIn
+│   ├── footer.astro        # socials, quick links, CP profiles
+│   ├── socialLinks.astro   # shared social icon set
+│   └── logoWall.astro      # scrolling tech marquee
+└── React/
+    ├── SkillsList.tsx      # "What I do?" accordion
+    └── LetterGlitch.tsx    # WebGL-free canvas glitch effect
+```
+
+## Theme
+
+Colors are CSS custom properties in `src/layouts/Layout.astro`:
+
+```css
+--background: #101010;  --sec: #a476ff;  --white: #dfdfdf;
+--white-icon: #f3f3f398;  --white-icon-tr: #f3f3f310;
+```
+
+Change `--sec` to re-tint the whole site.
+
+## Deploying
+
+`npm run build` outputs a static `dist/`. On Vercel, the framework preset is detected
+automatically — build command `npm run build`, output directory `dist`. No environment
+variables are required.
+
+### GitHub Pages
+
+The included `.github/workflows/deploy.yml` builds and deploys the site automatically on
+every push to `main`. Push this repository to GitHub, then enable **Settings → Pages → GitHub
+Actions** as the source. The workflow detects project-site paths automatically, so it works
+for both `username.github.io` repositories and regular project repositories.
+
+## Credits
+
+Based on the [dark-minimal](https://astro.build/themes/details/dark-minimal/) Astro theme by
+[Gothsec](https://github.com/Gothsec/Portfolio), MIT licensed.

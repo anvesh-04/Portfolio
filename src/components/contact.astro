@@ -1,92 +1,177 @@
+---
+import { PERSON, SOCIALS } from "@/config";
+---
+
 <section id="contact" class="w-full py-12 border-t border-[#ffffff10]">
   <div class="max-w-5xl mx-auto">
     <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">Let's talk</h2>
     <h3 class="text-4xl md:text-5xl font-medium text-[var(--white)] mb-6">
       Contact
     </h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="text-[var(--white-icon)]">
-        <p class="mb-4">
-          Have a question or a project in mind? Feel free to reach out.
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+      <div class="text-[var(--white-icon)] space-y-5">
+        <p class="text-base md:text-lg">
+          Open to internships, freelance work and collaboration on backend or
+          full-stack projects. The fastest way to reach me is email — I usually
+          reply within a day.
         </p>
-        <div class="flex items-center gap-2">
-          <span>Location:</span>
-          <span class="text-[var(--white)]">Your country</span>
-        </div>
+
+        <dl class="space-y-3 text-sm">
+          <div class="flex items-center gap-2">
+            <dt>Location:</dt>
+            <dd class="text-[var(--white)]">{PERSON.location}</dd>
+          </div>
+          <div class="flex items-center gap-2">
+            <dt>Phone:</dt>
+            <dd>
+              <a
+                href={`tel:${PERSON.phone.replace(/\s+/g, "")}`}
+                class="text-[var(--white)] hover:text-[var(--sec)] transition-colors"
+                >{PERSON.phone}</a
+              >
+            </dd>
+          </div>
+          <div class="flex items-center gap-2">
+            <dt>Availability:</dt>
+            <dd class="text-[var(--white)]">Open to opportunities</dd>
+          </div>
+        </dl>
       </div>
 
-      <div>
-        <form
-          id="contact-form"
-          action="https://formspree.io/f/YOUR_FORM_ID_HERE"
-          method="POST"
-          class="flex flex-col gap-4"
-        >
-          <input
-            type="text"
-            name="from_name"
-            placeholder="Name"
-            required
-            class="px-4 py-2 bg-[#1414149c] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)]"
-          />
-          <input
-            type="email"
-            name="reply_to"
-            placeholder="Email"
-            required
-            class="px-4 py-2 bg-[#1414149c] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)]"
-          />
-          <textarea
-            name="message"
-            placeholder="Message"
-            rows="6"
-            required
-            class="px-4 py-2 bg-[#1414149c] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)] resize-none"
-          ></textarea>
-          <button
-            type="submit"
-            class="px-4 py-2 bg-[var(--white-icon-tr)] text-[var(--white)] rounded-lg opacity-60 transition-opacity border border-[var(--white-icon-tr)] hover:opacity-100 hover:bg-[var(--white-icon-tr)]"
+      <div
+        class="rounded-2xl border border-[var(--white-icon-tr)] bg-[#1414149c] p-6 flex flex-col gap-4"
+      >
+        <span class="text-sm text-[var(--white-icon)]">Email</span>
+
+        <div class="flex items-center gap-2">
+          <code
+            id="contact-email"
+            class="flex-grow min-w-0 truncate text-[var(--white)] text-sm md:text-base px-3 py-2.5 rounded-lg bg-[#ffffff08] border border-[var(--white-icon-tr)]"
+            >{PERSON.email}</code
           >
-            Submit
+          <button
+            id="copy-email"
+            type="button"
+            data-email={PERSON.email}
+            aria-label="Copy email address to clipboard"
+            class="shrink-0 size-11 flex items-center justify-center rounded-lg border border-[var(--white-icon-tr)] text-[var(--white-icon)] hover:text-white hover:bg-[var(--white-icon-tr)] transition duration-300"
+          >
+            <svg
+              id="copy-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-5"
+              aria-hidden="true"
+            >
+              <path
+                d="M7 6V3C7 2.44772 7.44772 2 8 2H20C20.5523 2 21 2.44772 21 3V17C21 17.5523 20.5523 18 20 18H17V20.9991C17 21.5519 16.5551 22 16.0066 22H3.9934C3.44476 22 3 21.5554 3 20.9991L3.00258 7.00087C3.00269 6.44811 3.44759 6 3.99826 6H7ZM9 6H17V16H19V4H9V6Z"
+              ></path>
+            </svg>
+            <svg
+              id="check-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-5 hidden text-[var(--sec)]"
+              aria-hidden="true"
+            >
+              <path
+                d="M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z"
+              ></path>
+            </svg>
           </button>
-        </form>
-        <div
-          id="form-message"
-          class="hidden justify-center items-center mt-4 text-[var(--white)] text-lg"
-        >
-          ✅ Thank you for your message!
         </div>
+
+        <p
+          id="copy-status"
+          role="status"
+          aria-live="polite"
+          class="text-xs text-[var(--sec)] h-4"
+        >
+        </p>
+
+        <a
+          href={`${SOCIALS.email}?subject=${encodeURIComponent("Hello Anvesh")}`}
+          class="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-[var(--white-icon-tr)] text-[var(--white)] border border-[var(--white-icon-tr)] opacity-80 hover:opacity-100 hover:bg-[#ffffff1f] transition-all"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="size-5"
+            aria-hidden="true"
+          >
+            <path
+              d="m18.73 5.41l-1.28 1L12 10.46L6.55 6.37l-1.28-1A2 2 0 0 0 2 7.05v11.59A1.36 1.36 0 0 0 3.36 20h3.19v-7.72L12 16.37l5.45-4.09V20h3.19A1.36 1.36 0 0 0 22 18.64V7.05a2 2 0 0 0-3.27-1.64"
+            ></path>
+          </svg>
+          <span class="font-medium">Send me an email</span>
+        </a>
+
+        <a
+          href={SOCIALS.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-[var(--white-icon-tr)] text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)] transition-all"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="size-5"
+            aria-hidden="true"
+          >
+            <path
+              d="M18.3362 18.339H15.6707V14.1622C15.6707 13.1662 15.6505 11.8845 14.2817 11.8845C12.892 11.8845 12.6797 12.9683 12.6797 14.0887V18.339H10.0142V9.75H12.5747V10.9207H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325C17.8375 9.53325 18.337 11.3108 18.337 13.6245V18.339H18.3362ZM7.00373 8.57475C6.14573 8.57475 5.45648 7.88025 5.45648 7.026C5.45648 6.1725 6.14648 5.47875 7.00373 5.47875C7.85873 5.47875 8.55173 6.1725 8.55173 7.026C8.55173 7.88025 7.85798 8.57475 7.00373 8.57475ZM8.34023 18.339H5.66723V9.75H8.34023V18.339ZM19.6697 3H4.32923C3.59498 3 3.00098 3.5805 3.00098 4.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697Z"
+            ></path>
+          </svg>
+          <span class="font-medium">Connect on LinkedIn</span>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<script type="module" is:inline>
-  const form = document.getElementById("contact-form");
-  const formMessage = document.getElementById("form-message");
+<script>
+  const button = document.getElementById("copy-email");
+  const copyIcon = document.getElementById("copy-icon");
+  const checkIcon = document.getElementById("check-icon");
+  const status = document.getElementById("copy-status");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
+  let resetTimer: ReturnType<typeof setTimeout> | undefined;
+
+  function showCopied(message: string) {
+    copyIcon?.classList.add("hidden");
+    checkIcon?.classList.remove("hidden");
+    if (status) status.textContent = message;
+
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(() => {
+      copyIcon?.classList.remove("hidden");
+      checkIcon?.classList.add("hidden");
+      if (status) status.textContent = "";
+    }, 2000);
+  }
+
+  button?.addEventListener("click", async () => {
+    const email = button.dataset.email ?? "";
 
     try {
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
-      });
-      if (response.ok) {
-        form.reset();
-        form.style.display = "none";
-        formMessage.classList.remove("hidden");
-      } else {
-        const data = await response.json();
-        console.error("Error response:", data);
-        alert("There was a problem sending your message.");
+      await navigator.clipboard.writeText(email);
+      showCopied("Copied to clipboard");
+    } catch {
+      // Clipboard API needs a secure context; fall back to selecting the text.
+      const node = document.getElementById("contact-email");
+      if (node) {
+        const range = document.createRange();
+        range.selectNodeContents(node);
+        const selection = window.getSelection();
+        selection?.removeAllRanges();
+        selection?.addRange(range);
       }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("There was a problem sending your message.");
+      showCopied("Selected — press Ctrl/Cmd + C");
     }
   });
 </script>

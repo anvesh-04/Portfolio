@@ -1,35 +1,34 @@
-# Portfolio
+# Anvesh Gupta — Portfolio
 
-> Open-source personal portfolio template for developers, built with Astro, React, and Tailwind CSS.
-> Designed to be cloned, customized, and deployed with minimal configuration; includes a working
-> contact form, a Spotify album embed, and a Firebase-backed like counter.
+> Personal portfolio of Anvesh Gupta, a full-stack (MERN) developer based in Jaipur, India,
+> focused on distributed, algorithmically-optimized backend systems and competitive programming.
 
-Built as an Astro static site with React islands for interactive components. Requires Node.js >= 20
-and pnpm >= 9. External services needed for full functionality: a Formspree account (contact form)
-and a Firebase project (like counter). Spotify embed is a plain HTML iframe--no API key required.
+Static Astro site with React islands. All personal data lives in a single file, `src/config.ts`.
 
-## Docs
+## Profile
 
-- [README](https://github.com/Gothsec/Portfolio/blob/main/README.md): setup instructions, configuration guides for Spotify and Formspree, project structure, and deployment notes
-- [Spotify configuration guide](https://github.com/Gothsec/Portfolio/blob/main/README.md#show-your-favorite-spotify-album-or-your-own-): how to embed a Spotify album via iframe in `src/components/footer.astro`
-- [Formspree configuration guide](https://github.com/Gothsec/Portfolio/blob/main/README.md#set-up-contact-form-formspree-): how to wire the contact form in `src/components/contact.astro` to a Formspree endpoint
-- [Live demo](https://darkminimal.vercel.app): deployed instance of the portfolio
-- [Astro Themes listing](https://astro.build/themes/details/dark-minimal/): official theme entry
+- Name: Anvesh Gupta
+- Role: Full-Stack Developer (MERN)
+- Location: Jaipur, India
+- Education: B.Tech, Computer & Communication Engineering, The LNM Institute of Information Technology (2023–2027), CGPA 7.92/10
+- Email: anshgupta.4k@gmail.com
+
+## Links
+
+- [GitHub](https://github.com/anvesh-04)
+- [LinkedIn](https://www.linkedin.com/in/anvesh-gupta-905b41282)
+- [LeetCode](https://leetcode.com/u/Anvesh_Gupta12/): 400+ DSA problems solved
+- [Codeforces](https://codeforces.com/profile/a1nsh): Pupil rank
+
+## Projects
+
+- [Algorithmic Tournament & Fixture Engine](https://github.com/anvesh-04/tournament-engine): MERN app generating conflict-free round-robin fixtures with Graph Coloring and valid knockout brackets with Kahn's Algorithm. [Live demo](https://tournament-engine-eight.vercel.app/)
+- [Distributed Rate Limiter Middleware](https://github.com/anvesh-04/mern-rate-limiter): framework-agnostic Node.js middleware with Token Bucket, Sliding Window Counter/Log and Fixed Window strategies over an atomic Redis + Lua storage layer.
 
 ## Stack
 
-- **Astro** -- static site generator and component orchestrator
-- **React 19** -- interactive islands (LetterGlitch animation, LikeButton, SkillsList)
-- **Tailwind CSS** -- utility-first styling
-- **TypeScript** -- type checking across `.astro` and `.tsx` files
-- **Firebase / Firestore** -- realtime like counter with optimistic UI updates
-- **Formspree** -- serverless contact form backend
-- **Montserrat** (Fontsource variable) -- primary typeface
-- **OGL** -- WebGL utility used by the LetterGlitch canvas effect
-- **pnpm** -- package manager (enforced via `only-allow`)
-
-## Optional
-
-- [MIT License](https://opensource.org/licenses/mit): copyright 2026 Oscar Hernandez; attribution required on redistribution
-- [GitHub repository](https://github.com/Gothsec/Portfolio): source code, issues, and pull requests
-- [ReactBits Showcase](https://www.reactbits.dev/showcase): LetterGlitch component origin
+- Languages: C, C++, Java, JavaScript, Lua
+- Frontend: React.js, HTML5, CSS3, responsive design
+- Backend: Node.js, Express.js, RESTful APIs, system design
+- Databases: MongoDB, Redis
+- Tools: Git, GitHub, Vercel

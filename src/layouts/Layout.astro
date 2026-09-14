@@ -1,78 +1,107 @@
 ---
+import { PERSON, SITE_URL, SOCIALS } from "@/config";
+
 interface Props {
-  title: string;
+  title?: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title = `${PERSON.name} | ${PERSON.role}`,
+  description = PERSON.summary,
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const asset = (path: string) => `${base}/${path}`;
+const ogImage = new URL(asset("og.image.png"), SITE_URL).href;
+const favicon = asset("favicon.png");
+const font = asset("fonts/montserrat-latin-wght-normal.woff2");
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>{title} | Portfolio</title>
+    <title>{title}</title>
+    <meta name="description" content={description} />
     <meta
-      name="description"
-      content="Your Name - Software Developer building interactive and seamless digital experiences with cutting-edge frontend development."
+      name="keywords"
+      content="Anvesh Gupta, full-stack developer, MERN stack, React, Node.js, Express, MongoDB, Redis, competitive programming, graph algorithms, Jaipur"
     />
+    <meta name="author" content={PERSON.name} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="canonical" href="https://darkminimal.vercel.app/" />
+    <meta name="theme-color" content="#101010" />
+    <link rel="icon" type="image/png" href={favicon} />
+    <link rel="canonical" href={SITE_URL} />
 
     <link
       rel="preload"
-      href="/fonts/montserrat-latin-wght-normal.woff2"
+      href={font}
       as="font"
       type="font/woff2"
       crossorigin="anonymous"
     />
 
-    <meta
-      property="og:title"
-      content="Your Name | Software Developer"
-    />
-    <meta
-      property="og:description"
-      content="Portfolio of Your Name, Software Developer specializing in frontend and interactive experiences."
-    />
-    <meta
-      property="og:image"
-      content="https://darkminimal.vercel.app/og.image.png"
-    />
-    <meta property="og:url" content="https://darkminimal.vercel.app" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={SITE_URL} />
     <meta property="og:type" content="website" />
-    <meta
-      property="og:site_name"
-      content="Your Name Portfolio"
-    />
+    <meta property="og:site_name" content={`${PERSON.name} — Portfolio`} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-      {
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Person",
-        "name": "Your Name",
-        "alternateName": "Your Name",
-        "url": "https://darkminimal.vercel.app",
-        "image": "https://darkminimal.vercel.app/og.image.png",
-        "sameAs": [
-          "https://github.com",
-          "https://linkedin.com"
+        name: PERSON.name,
+        url: SITE_URL,
+        image: ogImage,
+        email: PERSON.email,
+        jobTitle: PERSON.role,
+        description: PERSON.summary,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Jaipur",
+          addressCountry: "IN",
+        },
+        alumniOf: {
+          "@type": "CollegeOrUniversity",
+          name: "The LNM Institute of Information Technology",
+        },
+        knowsAbout: [
+          "MERN Stack",
+          "Node.js",
+          "React",
+          "System Design",
+          "Graph Algorithms",
+          "Data Structures and Algorithms",
         ],
-        "jobTitle": "Software Developer",
-        "description": "Software Developer building interactive and seamless digital experiences."
-      }
-    </script>
+        sameAs: [
+          SOCIALS.github,
+          SOCIALS.linkedin,
+          SOCIALS.leetcode,
+          SOCIALS.codeforces,
+        ],
+      })}
+    />
   </head>
   <body class="bg-[--background] sm:px-28 lg:px-20 px-9">
     <slot />
   </body>
 </html>
 
-<style is:global>
+<style is:global define:vars={{ font }}>
   @font-face {
     font-family: "Montserrat Variable";
-    src: url("/fonts/montserrat-latin-wght-normal.woff2")
+    src: url(var(--font))
       format("woff2-variations");
     font-weight: 100 900;
     font-style: normal;
@@ -81,6 +110,7 @@ const { title } = Astro.props;
 
   :root {
     --background: #101010;
+    --component-bg: #14141480;
     --sec: #a476ff;
     --white: #dfdfdf;
     --white-icon: #f3f3f398;
@@ -98,9 +128,19 @@ const { title } = Astro.props;
     margin: 0;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   *::selection {
     background-color: var(--sec);
     color: var(--background);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--sec);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 
   /* Scrollbar styles */
@@ -110,22 +150,35 @@ const { title } = Astro.props;
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--container);
-    border-radius: 30px;
+    background: var(--background);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--background);
+    background: #2a2a2a;
     border-radius: 10px;
+    border: 4px solid var(--background);
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--pink);
+    background: var(--sec);
   }
 
   /* Scrollbar styles for Firefox */
   * {
     scrollbar-width: thin;
-    scrollbar-color: var(--line) var(--container);
+    scrollbar-color: #2a2a2a var(--background);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 </style>

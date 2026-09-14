@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Graph coloring assigns conflict-free time slots to tournament fixtures">
+  <defs>
+    <linearGradient id="tbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#191330"/>
+      <stop offset="60%" stop-color="#130f1f"/>
+      <stop offset="100%" stop-color="#0d0b14"/>
+    </linearGradient>
+    <radialGradient id="tglow" cx="38%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#a476ff" stop-opacity=".32"/>
+      <stop offset="100%" stop-color="#a476ff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="tgrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0v40" fill="none" stroke="#ffffff" stroke-opacity=".05" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="420" fill="url(#tbg)"/>
+  <rect width="1200" height="420" fill="url(#tgrid)"/>
+  <rect width="1200" height="420" fill="url(#tglow)"/>
+
+  <!-- fixture graph: an edge means "these two teams play", node color = time slot -->
+  <g stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M150 140 L330 90"/>
+    <path d="M150 140 L250 280" stroke="#5e4491" stroke-opacity=".75"/>
+    <path d="M330 90 L520 170" stroke="#a476ff" stroke-opacity=".5"/>
+    <path d="M250 280 L470 320" stroke="#a9ff5b" stroke-opacity=".35"/>
+    <path d="M520 170 L470 320" stroke="#5e4491" stroke-opacity=".75"/>
+    <path d="M330 90 L250 280" stroke="#ffffff" stroke-opacity=".12"/>
+    <path d="M150 140 L470 320" stroke="#ffffff" stroke-opacity=".1"/>
+    <path d="M520 170 L640 300" stroke="#a476ff" stroke-opacity=".45"/>
+    <path d="M470 320 L640 300" stroke="#ffffff" stroke-opacity=".12"/>
+    <path d="M150 140 L330 90" stroke="#a476ff" stroke-opacity=".55"/>
+  </g>
+
+  <g>
+    <circle cx="150" cy="140" r="28" fill="#a476ff"/>
+    <circle cx="150" cy="140" r="28" fill="none" stroke="#dcccff" stroke-opacity=".5" stroke-width="2"/>
+    <circle cx="330" cy="90" r="28" fill="#a9ff5b"/>
+    <circle cx="330" cy="90" r="28" fill="none" stroke="#e6ffcf" stroke-opacity=".5" stroke-width="2"/>
+    <circle cx="250" cy="280" r="28" fill="#5e4491"/>
+    <circle cx="250" cy="280" r="28" fill="none" stroke="#a476ff" stroke-opacity=".6" stroke-width="2"/>
+    <circle cx="520" cy="170" r="28" fill="#5e4491"/>
+    <circle cx="520" cy="170" r="28" fill="none" stroke="#a476ff" stroke-opacity=".6" stroke-width="2"/>
+    <circle cx="470" cy="320" r="28" fill="#a9ff5b"/>
+    <circle cx="470" cy="320" r="28" fill="none" stroke="#e6ffcf" stroke-opacity=".5" stroke-width="2"/>
+    <circle cx="640" cy="300" r="28" fill="#a476ff"/>
+    <circle cx="640" cy="300" r="28" fill="none" stroke="#dcccff" stroke-opacity=".5" stroke-width="2"/>
+  </g>
+
+  <!-- knockout bracket resolved in topological order -->
+  <g stroke="#f3f3f3" stroke-opacity=".2" stroke-width="3" fill="none">
+    <path d="M760 90 h60 v50 h60"/>
+    <path d="M760 190 h60 v-50"/>
+    <path d="M760 250 h60 v50 h60"/>
+    <path d="M760 350 h60 v-50"/>
+    <path d="M880 140 h50 v80 h60"/>
+    <path d="M880 300 h50 v-80"/>
+  </g>
+  <g fill="#a476ff" fill-opacity=".85">
+    <circle cx="995" cy="220" r="12"/>
+  </g>
+  <g fill="#f3f3f3" fill-opacity=".25">
+    <circle cx="760" cy="90" r="7"/><circle cx="760" cy="190" r="7"/>
+    <circle cx="760" cy="250" r="7"/><circle cx="760" cy="350" r="7"/>
+  </g>
+</svg>
